@@ -8,6 +8,7 @@
   --glow-1: rgba(88,166,255,0.20);
   --glow-2: rgba(155,122,255,0.16);
   --roll-duration: 220ms;
+  --nav-height: 64px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,6 +59,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   color: var(--text);
+  scroll-margin-top: calc(var(--nav-height) + 18px);
 }
 
 /* Animated name — BIG + glow */
@@ -122,6 +124,8 @@ body {
   display: flex;
   align-items: center;
   pointer-events: auto;
+  height: var(--nav-height);
+  z-index: 9999;
 }
 
 .top-nav ul {
@@ -244,15 +248,17 @@ body {
   }
 }
 
-/* ---------------------------
-   Experience / Timeline grid
-   --------------------------- */
+/* ===========================
+   Vertical Timeline (center)
+   Alternating left / right
+   =========================== */
 
-.experience-container {
+.experience-timeline-wrapper {
   width: 100%;
   max-width: 1100px;
-  padding: 2rem;
   margin: 0 auto;
+  padding: 2rem;
+  padding-top: calc(var(--nav-height) + 18px);
 }
 
 .experience-header {
@@ -263,61 +269,117 @@ body {
   margin-bottom: 1.25rem;
 }
 
-/* grid layout for tiles */
-.timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 18px;
-  align-items: start;
+/* timeline container — holds the center line */
+.timeline {
+  position: relative;
+  padding: 1rem 0;
+  margin-top: 10px;
+  margin-bottom: 40px;
 }
 
-/* each tile */
+/* center vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(88,166,255,0.10), rgba(155,122,255,0.06));
+  z-index: 1;
+}
+
+/* each timeline item — sized to half width and positioned relative to container */
 .timeline-item {
+  position: relative;
+  width: calc(50% - 40px);
+  padding: 12px 18px;
+  box-sizing: border-box;
+  z-index: 2;
+  outline: none;
+  margin: 32px 0;
+}
+
+/* left side items (content right-aligned toward the center line) */
+.timeline-item.left {
+  left: 0;
+  margin-left: 0;
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* right side items (content left-aligned toward the center line) */
+.timeline-item.right {
+  left: 50%;
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* the "card" visual inside the item */
+.timeline-item .item-content {
+  width: 100%;
+  max-width: 560px;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   border: 1px solid rgba(255,255,255,0.03);
   padding: 14px;
   border-radius: 12px;
-  min-height: 140px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   transition: transform 200ms cubic-bezier(.2,.9,.2,1), box-shadow 200ms ease, border-color 180ms ease;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.45);
   position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  outline: none;
 }
 
-/* hover/focus lifts the tile and reveals overlay */
-.timeline-item:focus,
-.timeline-item:hover {
+/* lift on hover/focus */
+.timeline-item:focus .item-content,
+.timeline-item:hover .item-content {
   transform: translateY(-8px);
   border-color: rgba(88,166,255,0.12);
-  box-shadow: 0 14px 40px rgba(6,12,24,0.6);
+  box-shadow: 0 18px 44px rgba(6,12,24,0.6);
 }
 
-/* tile top row (title + timeframe + github) */
-.tile-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: start;
-  margin-bottom: 10px;
+/* small arrow/connector pointing to center line */
+.timeline-item.left .item-content::after,
+.timeline-item.right .item-content::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  width: 14px;
+  height: 14px;
+  transform: rotate(45deg);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-left: 1px solid rgba(255,255,255,0.03);
+  border-top: 1px solid rgba(255,255,255,0.03);
+  z-index: 2;
 }
 
+/* arrow placement: left items -> arrow on right edge pointing to center; right items -> arrow on left edge */
+.timeline-item.left .item-content::after {
+  right: -7px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.timeline-item.right .item-content::after {
+  left: -7px;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* tile header */
 .tile-title {
   font-size: 1.05rem;
   font-weight: 800;
   color: var(--text);
-  margin: 0 0 4px 0;
+  margin: 0 0 6px 0;
 }
 
 .tile-time {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--muted);
 }
 
-/* github icon link */
+/* github link */
 .github-link {
   color: var(--muted);
   text-decoration: none;
@@ -338,19 +400,17 @@ body {
   transform: translateY(-2px);
 }
 
-/* tile body: the description area (keeps short preview by default) */
+/* description area (compact until hover/focus) */
 .tile-body {
-  position: relative;
+  margin-top: 10px;
   overflow: hidden;
   border-radius: 8px;
-  margin-top: 8px;
   background: rgba(255,255,255,0.01);
-  padding: 8px;
+  padding: 6px;
 }
 
-/* descriptive box (hidden by overlay height) */
 .tile-desc {
-  max-height: 64px;             /* collapsed height */
+  max-height: 64px;
   overflow: hidden;
   color: var(--muted);
   font-size: 0.95rem;
@@ -358,47 +418,66 @@ body {
   transition: max-height 220ms cubic-bezier(.2,.9,.2,1);
 }
 
-/* Keep monospace-like formatting while preserving wrapping */
-.tile-desc pre {
-  white-space: pre-wrap;
-  font-family: inherit;
-  margin: 0;
-}
+.tile-desc pre { white-space: pre-wrap; font-family: inherit; margin: 0; }
 
-/* On hover/focus, expand to show scrollable details */
+/* expand on hover/focus to show scrollable details */
 .timeline-item:hover .tile-desc,
 .timeline-item:focus .tile-desc {
-  max-height: 260px;            /* expanded height */
+  max-height: 260px;
   overflow: auto;
-  padding-right: 6px;          /* give space for scrollbar */
+  padding-right: 6px;
 }
 
-/* custom small scrollbar for description (webkit) */
-.tile-desc::-webkit-scrollbar {
-  width: 10px;
-}
-.tile-desc::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(88,166,255,0.18), rgba(155,122,255,0.12));
-  border-radius: 8px;
-  border: 2px solid rgba(0,0,0,0.12);
-}
-
-/* subtle decorative left timeline marker (vertical line) */
-/* optional: add when you want a connected timeline look */
-.timeline-grid::before {
-  content: '';
+/* dot marker centered on the center line beside each item */
+.timeline-dot {
   position: absolute;
-  left: 8%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, rgba(88,166,255,0.06), rgba(155,122,255,0.04));
-  opacity: 0; /* set to 1 if you want the visual line */
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  box-shadow: 0 6px 18px rgba(8,23,48,0.6);
+  z-index: 3;
+  border: 2px solid rgba(0,0,0,0.35);
 }
 
-/* responsive tweaks */
+/* make the dot slightly offset for left/right items for visual clarity */
+.timeline-item.left .timeline-dot { transform: translateX(-50%) translateY(0); }
+.timeline-item.right .timeline-dot { transform: translateX(-50%) translateY(0); }
+
+/* accessibility: show focus outline */
+.timeline-item:focus {
+  outline: none;
+}
+.timeline-item:focus .item-content {
+  box-shadow: 0 22px 50px rgba(6,12,24,0.65), 0 0 0 4px rgba(88,166,255,0.06);
+}
+
+/* responsive: single column stacking on small screens */
 @media (max-width: 820px) {
-  .timeline-grid { grid-template-columns: 1fr; gap: 14px; }
-  .tile-desc { max-height: 140px; }
-  .timeline-item { padding: 12px; }
+  .timeline::before { left: 20px; } /* move center line to left for stacked look */
+  .timeline-item {
+    width: 100%;
+    padding-left: 40px;
+    margin: 24px 0;
+  }
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0;
+    display: block;
+    text-align: left;
+  }
+  .timeline-item .item-content::after {
+    left: 10px;
+    transform: rotate(45deg);
+  }
+  .timeline-dot {
+    left: 20px;
+    transform: translateX(-50%);
+  }
+  .timeline-item .item-content {
+    margin-left: 20px;
+  }
 }
