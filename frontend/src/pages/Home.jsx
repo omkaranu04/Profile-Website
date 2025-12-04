@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from 'react'
 
 const ROLES = [
   'Coder',
+  'ML/DL Enthusiast',
   'Poet',
   'Writer',
-  'ML/DL Enthusiast',
   'Learner For Life',
   'Exploring...'
 ]

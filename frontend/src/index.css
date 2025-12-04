@@ -186,7 +186,7 @@ body {
 /* ABOUT PAGE LAYOUT */
 .about-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 3rem;
   width: 100%;
@@ -199,7 +199,9 @@ body {
 .about-photo-wrapper {
   flex-shrink: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .about-photo {
@@ -219,7 +221,7 @@ body {
 
 /* Text section */
 .about-text {
-  max-width: 540px;
+  max-width: 720px;
   text-align: left;
 }
 
@@ -518,4 +520,32 @@ body {
   }
   .tile-desc { max-height: 180px; }
 }
+
+/* Social icons (row under the image) */
+.about-social-icons {
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Individual icon styling */
+.social-icon {
+  color: var(--muted);
+  padding: 6px;
+  border-radius: 8px;
+  transition: color 200ms ease, transform 200ms ease, background 200ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-3px);
+}
+
+.social-icon svg { width:24px; height:24px; display:inline-block; vertical-align:middle; }
 
