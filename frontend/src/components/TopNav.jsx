@@ -10,21 +10,27 @@ const links = [
 
 export default function TopNav() {
   return (
-    <nav className="top-nav" aria-label="Primary">
-      <ul>
-        {links.map((l) => (
-          <li key={l.to}>
-            <NavLink
-              to={l.to}
-              className={({ isActive }) =>
-                isActive ? 'nav-link active' : 'nav-link'
-              }
-            >
-              {l.label}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <>
+      <nav className="top-nav" aria-label="Primary">
+        <ul>
+          {links.map((l) => (
+            <li key={l.to}>
+              <NavLink
+                to={l.to}
+                className={({ isActive }) =>
+                  isActive ? 'nav-link active' : 'nav-link'
+                }
+              >
+                {l.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Spacer equal to nav height so the rest of the page starts below the fixed nav.
+          This avoids adding padding to the body and prevents unwanted scroll. */}
+      <div className="nav-spacer" aria-hidden />
+    </>
   )
 }
