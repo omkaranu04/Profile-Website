@@ -70,38 +70,61 @@ body {
   display: inline-block;
   font-weight: 900;
   color: var(--accent);
-  min-width: 260px; 
-  text-align: center;
+  min-width: 6ch;               
+  text-align: left;
   perspective: 700px;
+  -webkit-perspective: 700px;
 }
 
 .name-animated .text-inner {
   display: inline-block;
   transform-origin: center;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   transition:
-    transform var(--roll-duration) cubic-bezier(.2,.9,.2,1),
-    opacity var(--roll-duration) cubic-bezier(.2,.9,.2,1),
-    text-shadow var(--roll-duration) cubic-bezier(.2,.9,.2,1);
-  font-size: 3.4rem;                 /* Match headline size */
-  color: var(--accent);
-  text-shadow:
-    0 0 12px var(--glow-1),
-    0 0 24px var(--glow-2);
+    transform 220ms cubic-bezier(.2,.9,.2,1),
+    opacity 220ms cubic-bezier(.2,.9,.2,1);
+  transform: rotateX(0deg);
+  opacity: 1;
+  will-change: transform, opacity;
 }
 
 .name-animated.rolled .text-inner {
   transform: rotateX(75deg);
   opacity: 0;
-  text-shadow: none;
 }
 
 .name-animated.inplace .text-inner {
   transform: rotateX(0deg);
   opacity: 1;
-  text-shadow:
-    0 0 14px var(--glow-1),
-    0 0 30px var(--glow-2);
+}
+
+/* Home headline wrapper: keep entire sentence centered */
+.home-headline-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Headline: inline-flex so the whole sentence remains centered as a unit */
+.home-headline {
+  font-size: 3.6rem;            /* adjust as you prefer */
+  font-weight: 900;
+  color: var(--text);
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  white-space: nowrap;          /* keep the headline on a single line if desired */
+}
+
+.rotating-word {
+  display: inline-block;
+  animation: rollIn 0.6s ease;
+  color: #8fb4ff;                  /* your theme color */
+  text-shadow: 0 0 18px rgba(140, 170, 255, 0.55);
 }
 
 /* Hint text */
@@ -113,8 +136,8 @@ body {
 
 /* Responsive */
 @media (max-width: 720px) {
-  .headline { font-size: 2rem; }
-  .name-animated .text-inner { font-size: 2rem; min-width: 140px; }
+  .home-headline { font-size: 2.2rem; }
+  .name-animated { min-width: 4ch; }
 }
 
 
@@ -242,6 +265,16 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes rollIn {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0);
+  }
 }
 
 /* Responsive for small screens */

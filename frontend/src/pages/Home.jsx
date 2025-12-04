@@ -1,3 +1,4 @@
+// profile-website/frontend/src/pages/Home.jsx
 import React, { useEffect, useState, useRef } from 'react'
 
 const ROLES = [
@@ -10,8 +11,8 @@ const ROLES = [
 ]
 
 export default function Home() {
-  const [text, setText] = useState('Omkar Bhandare') // current headline text
-  const [rolledOut, setRolledOut] = useState(false) // controls roll state
+  const [text, setText] = useState('Omkar Bhandare') // current rotating text
+  const [rolledOut, setRolledOut] = useState(false)  // controls roll state
   const mounted = useRef(true)
 
   useEffect(() => {
@@ -59,16 +60,18 @@ export default function Home() {
   return (
     <main className="app-root">
       <section className="hero">
-        <h1 className="headline">
-          Hey! I am{' '}
-          <span
-            className={`name-animated ${rolledOut ? 'rolled' : 'inplace'}`}
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            <span className="text-inner">{text}</span>
-          </span>
-        </h1>
+        <div className="home-headline-wrapper">
+          <h1 className="home-headline">
+            Hey! I am{' '}
+            <span
+              className={`name-animated ${rolledOut ? 'rolled' : 'inplace'}`}
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <span className="text-inner">{text}</span>
+            </span>
+          </h1>
+        </div>
       </section>
     </main>
   )
