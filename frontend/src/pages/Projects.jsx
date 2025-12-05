@@ -1,63 +1,17 @@
-// profile-website/frontend/src/pages/Projects.jsx
 import React from 'react'
-
-/**
- * Projects page — uses same timeline-card layout/behavior as Experience.jsx.
- * Replace or extend the `projects` array with your real projects.
- *
- * The rendering/parsing logic is identical to Experience.jsx so styles remain consistent.
- */
 
 const projects = [
   {
     id: 'proj-a',
-    title: 'Portfolio Website (This Site)',
-    timeframe: 'June 2024 - July 2024',
-    github: 'https://github.com/yourusername/portfolio-website',
-    description: `A personal portfolio site built with React (Vite) and Express.
-Features:
-- Minimal, responsive design
-- Animated headline and timeline components
-- Deploy-ready architecture (separate frontend + backend)
-
-Technologies:
-- React (Vite)
-- Express
-- MongoDB (Atlas)
-- Tailwind / CSS`
-  },
-  {
-    id: 'proj-b',
-    title: 'Image Captioning Research',
-    timeframe: '2023',
-    github: 'https://github.com/yourusername/image-captioning',
-    description: `Research prototype for image captioning using encoder-decoder transformers.
-
-Key points:
-- Trained on custom dataset with augmentation
-- Experimented with attention visualizations
-- Provided evaluation scripts and notebooks
-
-Technologies:
-- PyTorch
-- Transformers
-- Weights & Biases`
-  },
-  {
-    id: 'proj-c',
-    title: 'Chatbot Assistant (PoC)',
-    timeframe: '2022',
+    title: 'Cardiomegaly Detection - Bachelors Thesis Project - I',
+    timeframe: 'Jul \'25 - Nov \'25',
     github: '',
-    description: `Proof-of-concept chatbot to help with documentation and small tasks.
-
-Features:
-- Local LLM orchestration (prompt templates)
-- Slack integration for notifications
-
-Technologies:
-- Node.js
-- Express
-- Socket.io`
+    description: `
+    • Built a hybrid DenseNet121-CBAM model for Cardiomegaly detection, refining features across channel and spatial paths \n
+    • Implemented a custom FZLPR loss to emphasize 'hard' examples, improving recall on borderline cases and stabilising optimization \n
+    • Conducted extensive ablation studies isolating the contributions of CBAM, FZLPR, and training-schedule components \n
+    • Assessed robustness under domain shift using an unseen Indian dataset; targeted fine-tuning lifted F1-Score from 74.84% to 96.70% \n
+    `
   }
 ]
 

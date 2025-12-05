@@ -98,7 +98,8 @@ export default function About() {
               className="inline-instagram-link"
             >
                check it out!
-            </a>
+            </a> <br />
+            I am also a tech-geeek, and I  love keeping myself updated with the latest tech trends and gadgets. <br />
           </p>
         </div>
 
