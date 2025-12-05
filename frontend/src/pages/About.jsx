@@ -99,7 +99,7 @@ export default function About() {
             >
                check it out!
             </a> <br />
-            I am also a tech-geeek, and I  love keeping myself updated with the latest tech trends and gadgets. <br />
+            I am also a tech-geek, and I  love keeping myself updated with the latest tech trends and gadgets. <br />
           </p>
         </div>
 
