@@ -352,10 +352,9 @@ body {
 
 /* each timeline item — sized to half width and positioned relative to container */
 .timeline-item {
-  max-width: 900px;
+  max-width: 525px;
   width: 100%;
   position: relative;
-  width: calc(50% - 40px);
   padding: 12px 18px;
   box-sizing: border-box;
   z-index: 2;

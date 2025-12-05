@@ -21,18 +21,6 @@ const entries = [
     • Benchmarked MemStream against 9 algorithms across 7 datasets, using AUC-ROC, ROC-PR, and error-rate metrics \n
     • Authored a report highlighting MemStream's performance, strengths in concept-drift and real-time anomaly detection \n
     `
-  },
-  {
-    id: 'proj-2',
-    title: 'Research Intern - Deakin University (Dr. Ye Zhu)',
-    timeframe: 'Apr \'24 - Aug \'24',
-    github: 'https://github.com/omkaranu04/FTP-Deakin',
-    description: ` 
-    • Reproduced and validated MemStream for anomaly detection, achieving AUC-ROC scores up to 0.99 on Satimage-2 dataset \n
-    • Introduced 'limit' score threshold for anomaly labeling, improving adaptability and outperforming 6 of 9 baselines across datasets \n
-    • Benchmarked MemStream against 9 algorithms across 7 datasets, using AUC-ROC, ROC-PR, and error-rate metrics \n
-    • Authored a report highlighting MemStream's performance, strengths in concept-drift and real-time anomaly detection \n
-    `
   }
 ]
 
