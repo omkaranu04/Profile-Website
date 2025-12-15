@@ -1,10 +1,13 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-function setCors(res) {
-  res.setHeader('Access-Control-Allow-Origin', '*')
+const ALLOWED_ORIGIN = 'https://omkar-profile-website.vercel.app'
+
+function setCors(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGIN)
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+  res.setHeader('Vary', 'Origin')
 }
 
 /* ===== HANDLES (move to env later if you want) ===== */
@@ -99,17 +102,18 @@ async function getAtCoder() {
 
 /* ===== VERCEL HANDLER ===== */
 export default async function handler(req, res) {
+  setCors(req, res)
 
-    setCors(res)
+  // Handle preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end()
+  }
 
-    if (req.method === 'OPTIONS') {
-        return res.status(200).end()
-    }
-    
   const now = Date.now()
 
-  // Serve from cache if valid
+  // Cache hit
   if (cache.data && now - cache.timestamp < CACHE_TTL) {
+    setCors(req, res)
     return res.status(200).json({
       ...cache.data,
       cached: true
@@ -135,12 +139,14 @@ export default async function handler(req, res) {
       data: response
     }
 
-    res.status(200).json(response)
+    setCors(req, res)
+    return res.status(200).json(response)
+
   } catch (err) {
     console.error(err)
 
-    // Fallback to stale cache if available
     if (cache.data) {
+      setCors(req, res)
       return res.status(200).json({
         ...cache.data,
         cached: true,
@@ -148,8 +154,9 @@ export default async function handler(req, res) {
       })
     }
 
-    res.status(500).json({ error: 'Failed to fetch CP stats' })
+    setCors(req, res)
+    return res.status(500).json({ error: 'Failed to fetch CP stats' })
   }
 }
 
-console.log('Cache age:', Date.now() - cache.timestamp)
+
