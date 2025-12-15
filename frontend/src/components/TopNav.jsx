@@ -5,7 +5,9 @@ const links = [
   { to: '/', label: 'Home' },
   { to: '/about', label: 'About Me' },
   { to: '/experience', label: 'Experience' },
-  { to: '/projects', label: 'Projects' }
+  { to: '/projects', label: 'Projects' },
+  { to: '/hackathons', label: 'Hackathons' },
+  { to: '/cp', label: 'CP' }
 ]
 
 export default function TopNav() {
