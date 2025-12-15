@@ -2,36 +2,57 @@ import React, { useEffect, useState } from 'react'
 
 export default function CP() {
   const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/cp')
-      .then(res => res.json())
-      .then(setData)
-      .catch(console.error)
+    const API_BASE = import.meta.env.VITE_API_URL
+
+    if (!API_BASE) {
+      setError('API URL not configured')
+      setLoading(false)
+      return
+    }
+
+    fetch(`${API_BASE}/api/cp`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch CP stats')
+        return res.json()
+      })
+      .then((json) => {
+        setData(json)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error(err)
+        setError('Unable to load CP ratings')
+        setLoading(false)
+      })
   }, [])
 
-  if (!data) return <p>Loading CP stats...</p>
+  if (loading) {
+    return (
+      <main className="app-root">
+        <section className="experience-timeline-wrapper">
+          <h1 className="headline">Competitive Programming</h1>
+          <p>Loading ratings…</p>
+        </section>
+      </main>
+    )
+  }
 
-  const platforms = [
-    {
-      name: 'Codeforces',
-      curr: data.codeforces.rating,
-      max: data.codeforces.maxRating,
-      link: `https://codeforces.com/profile/${data.codeforces.handle}`
-    },
-    {
-      name: 'CodeChef',
-      curr: data.codechef.rating,
-      max: data.codechef.maxRating,
-      link: `https://www.codechef.com/users/${data.codechef.handle}`
-    },
-    {
-      name: 'AtCoder',
-      curr: data.atcoder.rating,
-      max: data.atcoder.maxRating,
-      link: `https://atcoder.jp/users/${data.atcoder.handle}`
-    }
-  ]
+  if (error) {
+    return (
+      <main className="app-root">
+        <section className="experience-timeline-wrapper">
+          <h1 className="headline">Competitive Programming</h1>
+          <p>{error}</p>
+        </section>
+      </main>
+    )
+  }
+
+  const { codeforces, codechef, atcoder } = data
 
   return (
     <main className="app-root">
@@ -39,38 +60,25 @@ export default function CP() {
         <header className="experience-header">
           <h1 className="headline">Competitive Programming</h1>
         </header>
-                <div style={{}}>
-          <a
-            className="github-link"
-            href="https://github.com/omkaranu04/CP_DSA"
-            target="_blank"
-          >
-            -&gt; CP/DSA GitHub Repository &lt;-
-          </a>
-        </div>
 
         <div className="timeline">
-          {platforms.map((p, idx) => (
+          {[codeforces, codechef, atcoder].map((p, idx) => (
             <article
-              key={p.name}
+              key={p.platform}
               className={`timeline-item ${idx % 2 === 0 ? 'left' : 'right'}`}
             >
               <div className="item-content">
-                <h3 className="tile-title">{p.name}</h3>
+                <h3 className="tile-title">{p.platform}</h3>
+
                 <p className="tile-time">
-                  Current Rating: <strong>{p.curr ?? 'N/A'}</strong>
+                  Current Rating:{' '}
+                  <strong>{p.rating ?? 'N/A'}</strong>
                 </p>
+
                 <p className="tile-time">
-                  Highest Rating: <strong>{p.max ?? 'N/A'}</strong>
+                  Highest Rating:{' '}
+                  <strong>{p.maxRating ?? 'N/A'}</strong>
                 </p>
-                <a
-                  className="github-link"
-                  href={p.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Profile
-                </a>
               </div>
             </article>
           ))}
