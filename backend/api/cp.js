@@ -1,6 +1,12 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
+function setCors(res) {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+}
+
 /* ===== HANDLES (move to env later if you want) ===== */
 const CF_HANDLE = 'omaksh_fr'
 const CC_HANDLE = 'omaksh_fr'
@@ -93,6 +99,13 @@ async function getAtCoder() {
 
 /* ===== VERCEL HANDLER ===== */
 export default async function handler(req, res) {
+
+    setCors(res)
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end()
+    }
+    
   const now = Date.now()
 
   // Serve from cache if valid
