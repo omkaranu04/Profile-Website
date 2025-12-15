@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+// Competitive Programming Page
+
 export default function CP() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
