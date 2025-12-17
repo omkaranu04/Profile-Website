@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-// Competitive Programming Page
-
 export default function CP() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -25,30 +23,18 @@ export default function CP() {
         setData(json)
         setLoading(false)
       })
-      .catch((err) => {
-        console.error(err)
+      .catch(() => {
         setError('Unable to load CP ratings')
         setLoading(false)
       })
   }, [])
 
-  if (loading) {
+  if (loading || error) {
     return (
       <main className="app-root">
-        <section className="experience-timeline-wrapper">
+        <section className="cp-wrapper">
           <h1 className="headline">Competitive Programming</h1>
-          <p>Loading ratings…</p>
-        </section>
-      </main>
-    )
-  }
-
-  if (error) {
-    return (
-      <main className="app-root">
-        <section className="experience-timeline-wrapper">
-          <h1 className="headline">Competitive Programming</h1>
-          <p>{error}</p>
+          <p>{loading ? 'Loading ratings…' : error}</p>
         </section>
       </main>
     )
@@ -58,31 +44,35 @@ export default function CP() {
 
   return (
     <main className="app-root">
-      <section className="experience-timeline-wrapper">
-        <header className="experience-header">
-          <h1 className="headline">Competitive Programming</h1>
-        </header>
+      <section className="cp-wrapper">
+        <h1 className="headline">Competitive Programming</h1>
 
-        <div className="timeline">
-          {[codeforces, codechef, atcoder].map((p, idx) => (
-            <article
-              key={p.platform}
-              className={`timeline-item ${idx % 2 === 0 ? 'left' : 'right'}`}
-            >
-              <div className="item-content">
-                <h3 className="tile-title">{p.platform}</h3>
+        {/* GitHub Link */}
+        <a
+          href="https://github.com/omkaranu04/CP_DSA"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cp-github-link"
+        >
+          -\gt CP/DSA Repository \lt-
+        </a>
 
-                <p className="tile-time">
-                  Current Rating:{' '}
-                  <strong>{p.rating ?? 'N/A'}</strong>
-                </p>
+        {/* Cards */}
+        <div className="cp-card-container">
+          {[codeforces, codechef, atcoder].map((p) => (
+            <div key={p.platform} className="cp-card">
+              <h3 className="cp-platform">{p.platform}</h3>
 
-                <p className="tile-time">
-                  Highest Rating:{' '}
-                  <strong>{p.maxRating ?? 'N/A'}</strong>
-                </p>
-              </div>
-            </article>
+              <p>
+                <span className="label">Current Rating:</span>
+                <span className="value">{p.rating ?? 'N/A'}</span>
+              </p>
+
+              <p>
+                <span className="label">Highest Rating:</span>
+                <span className="value">{p.maxRating ?? 'N/A'}</span>
+              </p>
+            </div>
           ))}
         </div>
       </section>

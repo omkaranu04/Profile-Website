@@ -598,3 +598,65 @@ body {
 
 .social-icon svg { width:24px; height:24px; display:inline-block; vertical-align:middle; }
 
+/* Wrapper */
+.cp-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* GitHub link */
+.cp-github-link {
+  display: inline-block;
+  margin: 0.5rem 0 2rem;
+  font-size: 0.95rem;
+  color: #4da3ff;
+  text-decoration: none;
+}
+
+.cp-github-link:hover {
+  text-decoration: underline;
+}
+
+/* Card container */
+.cp-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Individual card */
+.cp-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 1.5rem 2rem;
+  background: var(--card-bg, #111);
+  border: 1px solid #222;
+  border-radius: 12px;
+  text-align: left;
+}
+
+/* Platform title */
+.cp-platform {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Rating rows */
+.cp-card p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.4rem 0;
+}
+
+/* Labels & values */
+.cp-card .label {
+  color: #aaa;
+}
+
+.cp-card .value {
+  font-weight: 600;
+}
+
