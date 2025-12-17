@@ -1,40 +1,34 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-const ALLOWED_ORIGIN = 'https://omkar-profile-website.vercel.app'
-
-function setCors(req, res) {
-  const origin = req.headers.origin
-
-  if (
-    origin &&
-    (
-      origin.endsWith('.vercel.app') ||
-      origin === 'https://omkar-profile-website.vercel.app'
-    )
-  ) {
-    res.setHeader('Access-Control-Allow-Origin', origin)
-  }
-
+/* =====================
+   SIMPLE, SAFE CORS
+   ===================== */
+function setCors(res) {
+  res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-  res.setHeader('Vary', 'Origin')
 }
 
-
-/* ===== HANDLES (move to env later if you want) ===== */
+/* =====================
+   HANDLES
+   ===================== */
 const CF_HANDLE = 'omaksh_fr'
 const CC_HANDLE = 'omaksh_fr'
 const AC_HANDLE = 'omkarvb13'
 
-/* ===== CACHE ===== */
+/* =====================
+   CACHE (per instance)
+   ===================== */
 const CACHE_TTL = 30 * 60 * 1000 // 30 minutes
 let cache = {
   timestamp: 0,
   data: null
 }
 
-/* ===== CODEFORCES ===== */
+/* =====================
+   CODEFORCES
+   ===================== */
 async function getCodeforces() {
   const res = await axios.get(
     `https://codeforces.com/api/user.info?handles=${CF_HANDLE}`
@@ -54,7 +48,9 @@ async function getCodeforces() {
   }
 }
 
-/* ===== CODECHEF ===== */
+/* =====================
+   CODECHEF
+   ===================== */
 async function getCodeChef() {
   const { data } = await axios.get(
     `https://www.codechef.com/users/${CC_HANDLE}`,
@@ -79,7 +75,9 @@ async function getCodeChef() {
   }
 }
 
-/* ===== ATCODER (JSON HISTORY API) ===== */
+/* =====================
+   ATCODER (JSON API)
+   ===================== */
 async function getAtCoder() {
   const { data } = await axios.get(
     `https://atcoder.jp/users/${AC_HANDLE}/history/json`,
@@ -112,20 +110,21 @@ async function getAtCoder() {
   }
 }
 
-/* ===== VERCEL HANDLER ===== */
+/* =====================
+   VERCEL HANDLER
+   ===================== */
 export default async function handler(req, res) {
-  setCors(req, res)
+  setCors(res)
 
-  // Handle preflight
+  // Preflight
   if (req.method === 'OPTIONS') {
-    return res.status(204).end()
+    return res.status(200).end()
   }
 
   const now = Date.now()
 
   // Cache hit
   if (cache.data && now - cache.timestamp < CACHE_TTL) {
-    setCors(req, res)
     return res.status(200).json({
       ...cache.data,
       cached: true
@@ -151,14 +150,12 @@ export default async function handler(req, res) {
       data: response
     }
 
-    setCors(req, res)
     return res.status(200).json(response)
 
   } catch (err) {
     console.error(err)
 
     if (cache.data) {
-      setCors(req, res)
       return res.status(200).json({
         ...cache.data,
         cached: true,
@@ -166,9 +163,6 @@ export default async function handler(req, res) {
       })
     }
 
-    setCors(req, res)
     return res.status(500).json({ error: 'Failed to fetch CP stats' })
   }
 }
-
-
