@@ -66,7 +66,7 @@ export default function CP() {
           rel="noopener noreferrer"
           className="cp-github-link"
         >
-          -|gt CP/DSA Repository |lt|-
+          CP/DSA Repository
         </a>
 
         <div className="cp-card-container">
