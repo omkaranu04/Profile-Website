@@ -598,19 +598,21 @@ body {
 
 .social-icon svg { width:24px; height:24px; display:inline-block; vertical-align:middle; }
 
-/* Wrapper */
+/* =====================
+   CP PAGE — THEMED CARDS
+   ===================== */
+
 .cp-wrapper {
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
 
-/* GitHub link */
 .cp-github-link {
   display: inline-block;
-  margin: 0.5rem 0 2rem;
+  margin: 0.4rem 0 2rem;
   font-size: 0.95rem;
-  color: #4da3ff;
+  color: var(--accent);
   text-decoration: none;
 }
 
@@ -618,45 +620,82 @@ body {
   text-decoration: underline;
 }
 
-/* Card container */
+/* Stack cards vertically */
 .cp-card-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.6rem;
 }
 
-/* Individual card */
+/* Card — matches timeline item-content */
 .cp-card {
   width: 100%;
-  max-width: 420px;
-  padding: 1.5rem 2rem;
-  background: var(--card-bg, #111);
-  border: 1px solid #222;
-  border-radius: 12px;
+  max-width: 520px;
+  padding: 1.4rem 1.6rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.01)
+  );
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: 14px;
+  box-shadow: 0 10px 36px rgba(2,6,23,0.55);
   text-align: left;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 180ms ease;
 }
 
-/* Platform title */
+.cp-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(88,166,255,0.14);
+  box-shadow: 0 22px 50px rgba(6,12,24,0.65);
+}
+
+/* Header row: platform + profile link */
+.cp-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
 .cp-platform {
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text);
 }
 
-/* Rating rows */
-.cp-card p {
+/* Profile link */
+.cp-profile-link {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.cp-profile-link:hover {
+  color: var(--text);
+  transform: translateX(2px);
+}
+
+/* Metrics */
+.cp-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.cp-row {
   display: flex;
   justify-content: space-between;
-  margin: 0.4rem 0;
+  font-size: 0.95rem;
 }
 
-/* Labels & values */
-.cp-card .label {
-  color: #aaa;
+.cp-row .label {
+  color: var(--muted);
 }
 
-.cp-card .value {
-  font-weight: 600;
+.cp-row .value {
+  font-weight: 700;
+  color: var(--text);
 }
-
