@@ -40,39 +40,63 @@ export default function CP() {
     )
   }
 
-  const { codeforces, codechef, atcoder } = data
+  const platforms = [
+    {
+      ...data.codeforces,
+      profile: 'https://codeforces.com/profile/omaksh_fr'
+    },
+    {
+      ...data.codechef,
+      profile: 'https://www.codechef.com/users/omaksh_fr'
+    },
+    {
+      ...data.atcoder,
+      profile: 'https://atcoder.jp/users/omkarvb13'
+    }
+  ]
 
   return (
     <main className="app-root">
       <section className="cp-wrapper">
         <h1 className="headline">Competitive Programming</h1>
 
-        {/* GitHub Link */}
         <a
           href="https://github.com/omkaranu04/CP_DSA"
           target="_blank"
           rel="noopener noreferrer"
           className="cp-github-link"
         >
-          -\gt CP/DSA Repository \lt-
+          -|gt CP/DSA Repository |lt|-
         </a>
 
-        {/* Cards */}
         <div className="cp-card-container">
-          {[codeforces, codechef, atcoder].map((p) => (
-            <div key={p.platform} className="cp-card">
-              <h3 className="cp-platform">{p.platform}</h3>
+          {platforms.map((p) => (
+            <article key={p.platform} className="cp-card">
+              <div className="cp-card-header">
+                <h3 className="cp-platform">{p.platform}</h3>
 
-              <p>
-                <span className="label">Current Rating:</span>
-                <span className="value">{p.rating ?? 'N/A'}</span>
-              </p>
+                <a
+                  href={p.profile}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cp-profile-link"
+                >
+                  Profile →
+                </a>
+              </div>
 
-              <p>
-                <span className="label">Highest Rating:</span>
-                <span className="value">{p.maxRating ?? 'N/A'}</span>
-              </p>
-            </div>
+              <div className="cp-metrics">
+                <div className="cp-row">
+                  <span className="label">Current Rating</span>
+                  <span className="value">{p.rating ?? 'N/A'}</span>
+                </div>
+
+                <div className="cp-row">
+                  <span className="label">Highest Rating</span>
+                  <span className="value">{p.maxRating ?? 'N/A'}</span>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </section>
