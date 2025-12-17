@@ -34,7 +34,7 @@ export default function CP() {
       <main className="app-root">
         <section className="cp-wrapper">
           <h1 className="headline">Competitive Programming</h1>
-          <p>{loading ? 'Loading ratings…' : error}</p>
+          <p>{loading ? 'Loading Ratings…' : error}</p>
         </section>
       </main>
     )
