@@ -4,11 +4,23 @@ import * as cheerio from 'cheerio'
 const ALLOWED_ORIGIN = 'https://omkar-profile-website.vercel.app'
 
 function setCors(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGIN)
+  const origin = req.headers.origin
+
+  if (
+    origin &&
+    (
+      origin.endsWith('.vercel.app') ||
+      origin === 'https://omkar-profile-website.vercel.app'
+    )
+  ) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+  }
+
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
   res.setHeader('Vary', 'Origin')
 }
+
 
 /* ===== HANDLES (move to env later if you want) ===== */
 const CF_HANDLE = 'omaksh_fr'
