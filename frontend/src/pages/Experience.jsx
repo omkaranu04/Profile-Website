@@ -11,6 +11,17 @@ import React from 'react'
 
 const entries = [
   {
+    id: 'exp-amex-analyst',
+    title: 'Analyst Intern - American Express Pvt. Ltd., Gurugram',
+    timeframe: 'May \'26 - Jul \'26',
+    github: '',
+    description: `
+    • Developed an Agentic AI workflow within the Paid Search environment to detect anomalies across KPIs across paid-search markets \n
+    • Engineered workflow to reason the root cause of anomalies and suggest corrective actions, improving the quality of the action taken \n
+    • Reduced the time to action from ~15 days to ~2 days; delivered the workflow as a functional MVP in the paid-search environment \n
+    `
+  },
+  {
     id: 'proj-1',
     title: 'Research Intern - Deakin University (Dr. Ye Zhu)',
     timeframe: 'Apr \'24 - Aug \'24',

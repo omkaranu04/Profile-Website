@@ -3,14 +3,13 @@ import React from 'react'
 const projects = [
   {
     id: 'proj-a',
-    title: 'Cardiomegaly Detection - Bachelors Thesis Project - I',
-    timeframe: 'Jul \'25 - Nov \'25',
+    title: 'Thoracic Disease Detection & Report Synthesis - Bachelor\'s Thesis Project',
+    timeframe: 'Aug \'25 - Apr \'26',
     github: '',
     description: `
-    • Built a hybrid DenseNet121-CBAM model for Cardiomegaly detection, refining features across channel and spatial paths \n
-    • Implemented a custom FZLPR loss to emphasize 'hard' examples, improving recall on borderline cases and stabilising optimization \n
-    • Conducted extensive ablation studies isolating the contributions of CBAM, FZLPR, and training-schedule components \n
-    • Assessed robustness under domain shift using an unseen Indian dataset; targeted fine-tuning lifted F1-Score from 74.84% to 96.70% \n
+    • Built a 5-model ensemble (ResNet-v2, DenseNet-121/161/169/201) for multi-label classification of pathologies from chest X-rays \n
+    • Achieved 0.827/0.821 AUC on CheXpert/NIH zero-shot, improving to 0.980 AUC and 0.933 F1 on real-world Indian clinical data \n
+    • Designed an R2Gen-based report generator with Contrastive Attention and Relational Memory, achieving BLEU 0.382 on IU X-Ray \n
     `
   },
   {
