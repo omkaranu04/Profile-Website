@@ -3,6 +3,7 @@ import Icon from './Icon'
 import { sections } from '../data/sections'
 import { profile, socials } from '../data/profile'
 import { projects } from '../data/projects'
+import { competitions } from '../data/competitions'
 import './CommandPalette.css'
 
 function buildCommands({ onToggleTheme, theme, copyEmail }) {
@@ -16,6 +17,10 @@ function buildCommands({ onToggleTheme, theme, copyEmail }) {
     ...projects.map((p) => ({
       id: `p-${p.id}`, group: 'Projects', label: p.title, hint: p.context, icon: 'code',
       run: p.github ? open(p.github) : go('projects')
+    })),
+    ...competitions.map((c) => ({
+      id: `c-${c.id}`, group: 'Competitions', label: c.title, hint: c.context, icon: 'code',
+      run: c.github ? open(c.github) : go('competitions')
     })),
     ...(profile.resume
       ? [{ id: 'resume', group: 'Links', label: 'Open résumé', icon: 'file', run: open(profile.resume) }]

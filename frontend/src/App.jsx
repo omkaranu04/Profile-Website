@@ -6,6 +6,7 @@ import Hero from './sections/Hero'
 import About from './sections/About'
 import Experience from './sections/Experience'
 import Projects from './sections/Projects'
+import Competitions from './sections/Competitions'
 import CompetitiveProgramming from './sections/CompetitiveProgramming'
 import Writing from './sections/Writing'
 import Contact from './sections/Contact'
@@ -71,6 +72,7 @@ export default function App() {
         <About meta={meta.about} />
         <Experience meta={meta.experience} />
         <Projects meta={meta.projects} />
+        <Competitions meta={meta.competitions} />
         <CompetitiveProgramming meta={meta.cp} cp={cp} />
         <Writing meta={meta.writing} />
         <Contact meta={meta.contact} onToast={showToast} />

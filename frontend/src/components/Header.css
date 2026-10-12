@@ -32,6 +32,8 @@
 
 .brand {
   display: flex;
+  flex: none;
+  white-space: nowrap;
   align-items: center;
   gap: 10px;
   font-weight: 600;
@@ -57,9 +59,10 @@
 .nav ul { display: flex; gap: 2px; }
 .nav__link {
   display: inline-flex;
+  white-space: nowrap;
   align-items: baseline;
   gap: 6px;
-  padding: 8px 12px;
+  padding: 8px 10px;
   border-radius: 999px;
   font-size: 14px;
   color: var(--ink-2);
@@ -70,7 +73,8 @@
 .nav__link.is-active { color: var(--ink); background: var(--surface-2); }
 .nav__link.is-active .nav__num { color: var(--accent); }
 
-.header__actions { display: flex; align-items: center; gap: 8px; }
+.header__actions { display: flex; align-items: center; gap: 8px; flex: none; }
+.kbar-btn kbd { white-space: nowrap; }
 
 .kbar-btn {
   display: inline-flex;
@@ -101,13 +105,16 @@
 
 .menu-btn { display: none; }
 
+@media (max-width: 1180px) {
+  .kbar-btn__text, .kbar-btn kbd { display: none; }
+  .kbar-btn { width: 36px; padding: 0; justify-content: center; }
+}
+
 @media (max-width: 1060px) {
   .brand__name { display: none; }
 }
 
-@media (max-width: 860px) {
-  .kbar-btn__text, .kbar-btn kbd { display: none; }
-  .kbar-btn { width: 36px; padding: 0; justify-content: center; }
+@media (max-width: 1000px) {
   .menu-btn { display: grid; }
   .header__actions { margin-left: auto; }
   .brand__name { display: inline; }

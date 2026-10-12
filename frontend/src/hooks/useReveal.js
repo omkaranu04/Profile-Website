@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 // Adds `is-visible` to every `.reveal` element once it scrolls into view.
-// Re-scans when `key` changes (e.g. after a project filter swaps the cards).
+// Re-scans when `key` changes (e.g. after content that renders later).
 export default function useReveal(key) {
   useEffect(() => {
     const els = Array.from(document.querySelectorAll('.reveal:not(.is-visible)'))
