@@ -48,7 +48,7 @@ export default function Hero({ cp }) {
 
   return (
     <section id="top" className="hero">
-      <div className="container hero__grid">
+      <div className="container">
         <div className="hero__main">
           <p className="hero__eyebrow mono reveal">
             <span className="hero__dot" aria-hidden />
@@ -93,24 +93,6 @@ export default function Hero({ cp }) {
             </div>
           </div>
         </div>
-
-        <aside className="spec reveal" style={{ '--delay': '200ms' }} aria-label="At a glance">
-          <div className="spec__head">
-            <span className="mono">Now</span>
-            <span className="spec__loc mono"><Icon name="pin" size={13} /> {profile.location}</span>
-          </div>
-          <dl className="spec__list">
-            {profile.now.map((row) => (
-              <div className="spec__row" key={row.label}>
-                <dt className="mono">{row.label}</dt>
-                <dd>
-                  {row.value}
-                  {row.detail ? <span className="spec__detail">{row.detail}</span> : null}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </aside>
       </div>
 
       <div className="container">

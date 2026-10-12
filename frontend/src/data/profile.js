@@ -5,7 +5,7 @@ export const profile = {
   name: 'Omkar Bhandare',
   fullName: 'Bhandare Omkar Vijay',
   initials: 'OB',
-  headline: 'CS @ IIT Kharagpur · ML, Systems & Algorithms',
+  headline: 'CSE @ IITKGP',
   location: 'Kharagpur, India',
   email: 'omkaranu04@gmail.com',
   // Drop a PDF in frontend/public/ (e.g. resume.pdf) and set this to '/resume.pdf'
@@ -13,20 +13,9 @@ export const profile = {
   resume: null,
 
   // Rotating phrase in the hero ("I’m ___")
-  roles: ['a coder', 'an ML/DL enthusiast', 'a competitive programmer', 'a poet', 'a writer', 'a learner for life'],
+  roles: ['a coder', 'an ML/DL enthusiast', 'a poet', 'a writer', 'a learner for life'],
 
-  intro:
-    'Final-year Dual Degree (B.Tech + M.Tech) student in Computer Science at **IIT Kharagpur**. ' +
-    'I build machine-learning systems that hold up outside the notebook — from an **agentic AI workflow** at American Express ' +
-    'to **chest X-ray models** for my thesis — and I like my code fast, correct and well-tested.',
-
-  // "Now" spec-sheet in the hero
-  now: [
-    { label: 'Studying', value: 'Dual Degree, CSE · IIT Kharagpur', detail: 'Class of 2027' },
-    { label: 'Recently', value: 'Analyst Intern · American Express', detail: 'May – Jul 2026' },
-    { label: 'Focus', value: 'ML / DL · Systems · Algorithms' },
-    { label: 'Open to', value: 'Quant, SDE & SWE roles' }
-  ],
+  intro: 'Final Year Dual Degree at **IIT Kharagpur**',
 
   // Headline numbers. Keep these short — they render as a row of figures.
   // `live` swaps in the peak rating from the CP API when it is reachable.
