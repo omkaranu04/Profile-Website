@@ -15,15 +15,6 @@
 }
 .xp__dates { font-size: 11.5px; color: var(--ink); }
 .xp__place { font-size: 13.5px; color: var(--muted); }
-.xp__highlight {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-}
-.xp__hl-value { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; color: var(--accent); }
-.xp__hl-label { font-size: 12.5px; color: var(--muted); }
 
 .xp__card {
   border: 1px solid var(--line);
@@ -51,7 +42,7 @@
 }
 .xp__link:hover { color: var(--accent); }
 
-.xp__points { margin: 18px 0 20px; display: grid; gap: 10px; }
+.xp__points { margin-top: 18px; display: grid; gap: 10px; }
 .xp__points li {
   position: relative;
   padding-left: 22px;
@@ -70,8 +61,6 @@
 @media (max-width: 700px) {
   .xp__item { grid-template-columns: 1fr; gap: 12px; }
   .xp__meta { padding-top: 0; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
-  .xp__highlight { margin: 0; padding: 0; border: 0; flex-direction: row; align-items: baseline; gap: 6px; width: 100%; }
-  .xp__hl-value { font-size: 18px; }
   .xp__card { padding: 20px; }
   .xp__head { flex-direction: column; gap: 6px; }
 }

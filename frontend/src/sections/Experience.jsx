@@ -6,19 +6,13 @@ import './Experience.css'
 
 export default function Experience({ meta }) {
   return (
-    <Section id={meta.id} number={meta.number} title="Experience" kicker="Industry and research internships — shipping ML where it meets real data.">
+    <Section id={meta.id} number={meta.number} title="Experience">
       <ol className="xp">
         {experience.map((job, i) => (
           <li key={job.id} className="xp__item reveal" style={{ '--delay': `${i * 80}ms` }}>
             <div className="xp__meta">
               <span className="xp__dates mono">{job.start} — {job.end}</span>
               <span className="xp__place">{job.location} · {job.mode}</span>
-              {job.highlight ? (
-                <div className="xp__highlight">
-                  <span className="xp__hl-value">{job.highlight.value}</span>
-                  <span className="xp__hl-label">{job.highlight.label}</span>
-                </div>
-              ) : null}
             </div>
 
             <article className="xp__card">
@@ -36,9 +30,6 @@ export default function Experience({ meta }) {
               <ul className="xp__points">
                 {job.points.map((p, j) => <li key={j}><RichText text={p} /></li>)}
               </ul>
-              <div className="tags">
-                {job.tags.map((t) => <span key={t} className="tag">{t}</span>)}
-              </div>
             </article>
           </li>
         ))}
