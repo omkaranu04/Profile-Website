@@ -20,7 +20,7 @@ export const profile = {
   // About text, one entry per line. Supports **bold** and [links](https://...).
   about: [
     'Hey!',
-    'I am Omkar Bhandare, a fourth year CSE Dual Degree student at IIT Kharagpur.',
+    'I am Omkar Bhandare, a final year CSE Dual Degree student at IIT Kharagpur.',
     'I am passionate about machine learning and deep learning, and I am always keen to explore new advancements in these fields.',
     'I also am fond of DSA and CP, and love solving problems on various competitive programming platforms.',
     'Apart from academics, I enjoy writing poetry and prose in my free time. I do have an Instagram page where I share my work - don’t forget to [check it out!](https://www.instagram.com/deadpoets_page?igsh=MXFwMHVyamUwcm1wMQ==)',
