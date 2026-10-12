@@ -41,33 +41,3 @@ export const socials = [
   { id: 'codeforces', label: 'Codeforces', handle: 'omaksh_fr', url: 'https://codeforces.com/profile/omaksh_fr' },
   { id: 'instagram', label: 'Instagram', handle: 'omkarvb_13', url: 'https://www.instagram.com/omkarvb_13?igsh=MTZxZm15M3lsNzl5OA==' }
 ]
-
-export const education = [
-  {
-    school: 'Indian Institute of Technology, Kharagpur',
-    degree: 'Dual Degree (B.Tech + M.Tech), Computer Science & Engineering',
-    period: '2022 – 2027',
-    score: 'CGPA 8.97 / 10'
-  },
-  {
-    school: 'Nav Krishna Valley Junior College, Kupwad',
-    degree: 'Maharashtra State Board (HSC), Class XII',
-    period: '2022',
-    score: '92.17%'
-  }
-]
-
-export const skills = [
-  { group: 'Languages', items: ['C', 'C++', 'Python'], secondary: ['Bash', 'SQL', 'Cypher', 'Verilog', 'JavaScript', 'HTML/CSS', 'MIPS'] },
-  { group: 'ML & Data', items: ['PyTorch', 'NumPy', 'Pandas'], secondary: ['scikit-learn', 'CatBoost', 'Optuna', 'FAISS'] },
-  { group: 'Backend & Databases', items: ['Node.js', 'Express.js', 'Flask'], secondary: ['PostgreSQL', 'MongoDB', 'Neo4j'] },
-  { group: 'Tools', items: ['Git', 'Linux shell', 'VS Code'], secondary: ['Postman', 'Jupyter', 'Google Colab', 'Kaggle'] }
-]
-
-export const coursework = [
-  'Operating Systems', 'Database Management Systems', 'Computer Networks', 'Compilers',
-  'Computer Organization & Architecture', 'Systems Programming', 'Software Engineering',
-  'Algorithms I & II', 'Deep Learning', 'Machine Learning', 'Advanced ML', 'Image Processing',
-  'Natural Language Processing', 'Complex Network Theory', 'High Performance Computer Architecture',
-  'Probability & Statistics', 'Discrete Structures', 'Linear Algebra'
-]

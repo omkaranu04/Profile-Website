@@ -11,7 +11,7 @@ All text lives in `frontend/src/data/`. You should rarely need to touch a compon
 
 | File | What it controls |
 | --- | --- |
-| `profile.js` | Name, intro, “Now” card, headline figures, About text, interests, education, skills, coursework, socials, writing blurb, résumé link |
+| `profile.js` | Name, tagline, rotating roles, intro, About text, socials, writing blurb, résumé link |
 | `experience.js` | Internships / jobs (newest first) |
 | `projects.js` | Project and competition cards, filter categories, the featured card |
 | `achievements.js` | CP handles + fallback ratings, entrance-exam honours |

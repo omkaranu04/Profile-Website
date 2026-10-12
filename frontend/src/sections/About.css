@@ -31,77 +31,7 @@
   margin-bottom: 8px;
 }
 
-.about__blocks { margin-top: 56px; display: grid; gap: 16px; }
-
-.block {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  padding: 22px 24px;
-}
-.block__title { font-size: 11px; color: var(--accent); font-weight: 500; margin-bottom: 14px; }
-
-.edu__item { padding: 14px 0; border-top: 1px solid var(--line); }
-.edu__item:first-child { border-top: 0; padding-top: 2px; }
-.edu__top, .edu__bottom { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; flex-wrap: wrap; }
-.edu__school { font-weight: 600; font-size: 16px; }
-.edu__period { color: var(--muted); font-size: 11px; }
-.edu__bottom { margin-top: 2px; color: var(--ink-2); font-size: 14.5px; }
-.edu__score { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
-
-.skills__row {
-  display: grid;
-  grid-template-columns: 170px 1fr;
-  gap: 16px;
-  padding: 12px 0;
-  border-top: 1px solid var(--line);
-}
-.skills__row:first-child { border-top: 0; padding-top: 2px; }
-.skills__row dt { font-size: 14px; font-weight: 600; padding-top: 3px; }
-.skills__row dd { display: flex; flex-wrap: wrap; gap: 6px; }
-.skill {
-  font-size: 13px;
-  padding: 3px 10px;
-  border-radius: 6px;
-  color: var(--ink-2);
-  background: var(--surface-2);
-}
-.skill--primary { background: var(--ink); color: var(--bg); font-weight: 500; }
-
-.block--details summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  list-style: none;
-}
-.block--details summary::-webkit-details-marker { display: none; }
-.block--details summary .block__title { margin: 0; }
-.block__count { font-size: 11px; color: var(--muted); display: inline-flex; align-items: center; gap: 10px; }
-.block__count::after {
-  content: '+';
-  display: grid;
-  place-items: center;
-  width: 24px; height: 24px;
-  border-radius: 50%;
-  border: 1px solid var(--line-strong);
-  font-size: 15px;
-  transition: transform .3s var(--ease);
-}
-.block--details[open] .block__count::after { transform: rotate(45deg); }
-.course-list {
-  margin-top: 16px;
-  columns: 2;
-  column-gap: 32px;
-  font-size: 14.5px;
-  color: var(--ink-2);
-}
-.course-list li { break-inside: avoid; padding: 6px 0; border-bottom: 1px dashed var(--line); }
-
 @media (max-width: 700px) {
   .about { grid-template-columns: 1fr; }
   .about__photo { max-width: 300px; }
-  .skills__row { grid-template-columns: 1fr; gap: 8px; }
-  .course-list { columns: 1; }
-  .block { padding: 18px; }
 }
