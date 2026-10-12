@@ -26,36 +26,47 @@ let cache = {
   data: null
 }
 
+const http = axios.create({
+  timeout: 8000,
+  headers: { 'User-Agent': 'Mozilla/5.0' }
+})
+
+// history entries: { t: unix seconds, rating: number, contest: string }
+
 /* =====================
    CODEFORCES
    ===================== */
 async function getCodeforces() {
-  const res = await axios.get(
-    `https://codeforces.com/api/user.info?handles=${CF_HANDLE}`
-  )
+  const [info, history] = await Promise.all([
+    http.get(`https://codeforces.com/api/user.info?handles=${CF_HANDLE}`),
+    http.get(`https://codeforces.com/api/user.rating?handle=${CF_HANDLE}`).catch(() => null)
+  ])
 
-  if (res.data.status !== 'OK') {
+  if (info.data.status !== 'OK') {
     throw new Error('Codeforces API failed')
   }
 
-  const u = res.data.result[0]
+  const u = info.data.result[0]
+  const contests = history?.data?.status === 'OK' ? history.data.result : []
 
   return {
     platform: 'Codeforces',
     handle: u.handle,
     rating: u.rating ?? null,
-    maxRating: u.maxRating ?? null
+    maxRating: u.maxRating ?? null,
+    history: contests.map((c) => ({
+      t: c.ratingUpdateTimeSeconds,
+      rating: c.newRating,
+      contest: c.contestName
+    }))
   }
 }
 
 /* =====================
-   CODECHEF
+   CODECHEF (profile page scrape)
    ===================== */
 async function getCodeChef() {
-  const { data } = await axios.get(
-    `https://www.codechef.com/users/${CC_HANDLE}`,
-    { headers: { 'User-Agent': 'Mozilla/5.0' } }
-  )
+  const { data } = await http.get(`https://www.codechef.com/users/${CC_HANDLE}`)
 
   const $ = cheerio.load(data)
 
@@ -67,11 +78,29 @@ async function getCodeChef() {
 
   const highestMatch = highestText.match(/(\d+)/)
 
+  // The rating graph is embedded as `var all_rating = [...];`
+  let history = []
+  const graph = data.match(/all_rating\s*=\s*(\[[\s\S]*?\]);/)
+  if (graph) {
+    try {
+      history = JSON.parse(graph[1])
+        .map((c) => ({
+          t: Math.floor(Date.parse(String(c.end_date).replace(' ', 'T') + '+05:30') / 1000),
+          rating: Number(c.rating),
+          contest: c.name
+        }))
+        .filter((c) => Number.isFinite(c.t) && Number.isFinite(c.rating))
+    } catch {
+      history = []
+    }
+  }
+
   return {
     platform: 'CodeChef',
     handle: CC_HANDLE,
     rating: ratingText ? Number(ratingText) : null,
-    maxRating: highestMatch ? Number(highestMatch[1]) : null
+    maxRating: highestMatch ? Number(highestMatch[1]) : null,
+    history
   }
 }
 
@@ -79,34 +108,30 @@ async function getCodeChef() {
    ATCODER (JSON API)
    ===================== */
 async function getAtCoder() {
-  const { data } = await axios.get(
-    `https://atcoder.jp/users/${AC_HANDLE}/history/json`,
-    { headers: { 'User-Agent': 'Mozilla/5.0' } }
-  )
+  const { data } = await http.get(`https://atcoder.jp/users/${AC_HANDLE}/history/json`)
 
-  if (!Array.isArray(data) || data.length === 0) {
+  const rated = Array.isArray(data) ? data.filter((e) => e.IsRated && e.NewRating != null) : []
+
+  if (rated.length === 0) {
     return {
       platform: 'AtCoder',
       handle: AC_HANDLE,
       rating: null,
-      maxRating: null
-    }
-  }
-
-  const last = data[data.length - 1]
-  let maxRating = null
-
-  for (const entry of data) {
-    if (entry.NewRating != null) {
-      maxRating = Math.max(maxRating ?? 0, entry.NewRating)
+      maxRating: null,
+      history: []
     }
   }
 
   return {
     platform: 'AtCoder',
     handle: AC_HANDLE,
-    rating: last.NewRating ?? null,
-    maxRating
+    rating: rated[rated.length - 1].NewRating,
+    maxRating: Math.max(...rated.map((e) => e.NewRating)),
+    history: rated.map((e) => ({
+      t: Math.floor(Date.parse(e.EndTime) / 1000),
+      rating: e.NewRating,
+      contest: e.ContestNameEn || e.ContestName
+    }))
   }
 }
 
@@ -131,38 +156,32 @@ export default async function handler(req, res) {
     })
   }
 
-  try {
-    const [cf, cc, ac] = await Promise.all([
-      getCodeforces(),
-      getCodeChef(),
-      getAtCoder()
-    ])
+  // Each platform succeeds or fails on its own; a failure falls back to the
+  // last cached value for that platform (or null), never failing the request.
+  const [cf, cc, ac] = await Promise.allSettled([getCodeforces(), getCodeChef(), getAtCoder()])
 
-    const response = {
-      codeforces: cf,
-      codechef: cc,
-      atcoder: ac,
-      cached: false
-    }
+  const pick = (result, key) => {
+    if (result.status === 'fulfilled') return result.value
+    console.error(`${key} failed:`, result.reason?.message ?? result.reason)
+    return cache.data?.[key] ?? null
+  }
 
-    cache = {
-      timestamp: now,
-      data: response
-    }
+  const response = {
+    codeforces: pick(cf, 'codeforces'),
+    codechef: pick(cc, 'codechef'),
+    atcoder: pick(ac, 'atcoder'),
+    cached: false
+  }
 
-    return res.status(200).json(response)
-
-  } catch (err) {
-    console.error(err)
-
-    if (cache.data) {
-      return res.status(200).json({
-        ...cache.data,
-        cached: true,
-        stale: true
-      })
-    }
-
+  if (!response.codeforces && !response.codechef && !response.atcoder) {
     return res.status(500).json({ error: 'Failed to fetch CP stats' })
   }
+
+  const allFresh = [cf, cc, ac].every((r) => r.status === 'fulfilled')
+  if (allFresh || !cache.data) {
+    cache = { timestamp: now, data: response }
+  }
+
+  res.setHeader('Cache-Control', 's-maxage=1800, stale-while-revalidate=86400')
+  return res.status(200).json(response)
 }

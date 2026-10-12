@@ -1,0 +1,103 @@
+.cp-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  margin-bottom: 20px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.cp-status__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); }
+.cp-status__dot.is-live { background: #2f9e5b; box-shadow: 0 0 0 3px rgba(47, 158, 91, .18); }
+.cp-status__dot.is-loading { animation: blink 1s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .3; } }
+.cp-status__repo {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-2);
+  transition: color .2s var(--ease);
+}
+.cp-status__repo:hover { color: var(--accent); }
+
+.cp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cp-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 22px 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+.cp-card__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.cp-card__name { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+.cp-card__handle {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 2px;
+  font-size: 11px;
+  text-transform: none;
+  color: var(--muted);
+  transition: color .2s var(--ease);
+}
+.cp-card__handle:hover { color: var(--accent); }
+.cp-card__rank {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-wash);
+  color: var(--accent);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cp-card__stats { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+.cp-card__stats > div { padding-top: 12px; display: flex; flex-direction: column-reverse; gap: 2px; }
+.cp-card__stats > div + div { padding-left: 16px; border-left: 1px solid var(--line); }
+.cp-card__stats dt { font-size: 12.5px; color: var(--muted); }
+.cp-card__stats dd { font-size: 34px; font-weight: 600; letter-spacing: -0.035em; line-height: 1.05; }
+.cp-card__stats dd.is-loading { color: var(--line-strong); animation: blink 1s ease-in-out infinite; }
+
+.cp-card__chart { margin-top: auto; }
+.cp-card__nochart {
+  height: 138px;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--line-strong);
+  border-radius: 8px;
+  font-size: 10.5px;
+  color: var(--muted);
+}
+.cp-card__nochart.is-loading { animation: blink 1.2s ease-in-out infinite; }
+
+.honours {
+  margin-top: 40px;
+  border-top: 1px solid var(--ink);
+  padding-top: 18px;
+}
+.honours__title { font-size: 11px; color: var(--accent); margin-bottom: 8px; }
+.honours__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.honour { display: flex; flex-direction: column; gap: 3px; padding: 14px 20px 6px 0; }
+.honour + .honour { padding-left: 20px; border-left: 1px solid var(--line); }
+.honour__value { font-family: var(--font-display); font-size: 40px; line-height: 1; letter-spacing: -0.01em; }
+.honour__label { font-weight: 600; font-size: 14.5px; margin-top: 6px; }
+.honour__note { color: var(--muted); font-size: 13.5px; }
+
+@media (max-width: 1020px) {
+  .cp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .cp-grid { grid-template-columns: 1fr; }
+  .honours__list { grid-template-columns: 1fr; }
+  .honour + .honour { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 8px; }
+  .cp-status__repo { margin-left: 0; width: 100%; }
+}
