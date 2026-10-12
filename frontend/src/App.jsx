@@ -67,7 +67,7 @@ export default function App() {
       <a className="skip-link" href="#about">Skip to content</a>
       <Header theme={theme} onToggleTheme={toggle} onOpenPalette={openPalette} />
       <main>
-        <Hero cp={cp} />
+        <Hero />
         <About meta={meta.about} />
         <Experience meta={meta.experience} />
         <Projects meta={meta.projects} />

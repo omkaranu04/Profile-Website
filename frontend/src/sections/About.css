@@ -22,18 +22,14 @@
 .about__photo figcaption { margin-top: 14px; color: var(--muted); font-size: 10.5px; text-align: center; }
 
 .about__text p { font-size: 17px; color: var(--ink-2); }
-.about__text p + p { margin-top: 18px; }
-.about__text p:first-child::first-letter {
-  float: left;
+.about__text p + p { margin-top: 12px; }
+.about__text p:first-child {
   font-family: var(--font-display);
-  font-size: 66px;
-  line-height: .82;
-  padding: 6px 10px 0 0;
+  font-size: 40px;
+  line-height: 1;
   color: var(--accent);
+  margin-bottom: 8px;
 }
-
-.about__interests { margin-top: 28px; display: grid; gap: 12px; }
-.about__interests > .mono { color: var(--muted); font-size: 11px; }
 
 .about__blocks { margin-top: 56px; display: grid; gap: 16px; }
 

@@ -64,43 +64,7 @@
 .hero__socials { display: flex; gap: 8px; margin-left: 6px; }
 .hero__socials .icon-btn { width: 42px; height: 42px; }
 
-/* Headline figures */
-.figures {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: clamp(56px, 8vw, 96px);
-  border-top: 1px solid var(--ink);
-}
-.figure {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 22px 20px 4px 0;
-}
-.figure + .figure { padding-left: 20px; border-left: 1px solid var(--line); }
-.figure__value {
-  font-size: clamp(32px, 4vw, 44px);
-  font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1;
-}
-.figure__unit { font-size: .45em; font-weight: 500; color: var(--muted); margin-left: 4px; letter-spacing: 0; }
-.figure__label { color: var(--ink-2); font-size: 14px; line-height: 1.35; }
-.figure__note { position: absolute; top: 22px; right: 0; color: var(--accent); font-size: 10px; }
-
-@media (max-width: 960px) {
-  .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .figure:nth-child(3) { padding-left: 0; border-left: 0; }
-  .figure:nth-child(n + 3) { border-top: 1px solid var(--line); padding-top: 22px; margin-top: 16px; }
-  .figure:nth-child(n + 3) .figure__note { top: 38px; }
-}
-
 @media (max-width: 520px) {
   .hero__title-last { padding-left: .3em; }
-  .figure { padding-right: 12px; }
-  .figure + .figure { padding-left: 14px; }
-  .figure:nth-child(3) { padding-left: 0; }
-  .figure__note { display: none; }
   .hero__socials { margin-left: 0; }
 }

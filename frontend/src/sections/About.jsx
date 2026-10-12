@@ -23,12 +23,6 @@ export default function About({ meta }) {
               <RichText text={p} />
             </p>
           ))}
-          <div className="about__interests reveal">
-            <span className="mono">Interests</span>
-            <div className="tags">
-              {profile.interests.map((t) => <span key={t} className="tag">{t}</span>)}
-            </div>
-          </div>
         </div>
       </div>
 

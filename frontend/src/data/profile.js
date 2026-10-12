@@ -17,22 +17,15 @@ export const profile = {
 
   intro: 'Final Year Dual Degree at **IIT Kharagpur**',
 
-  // Headline numbers. Keep these short — they render as a row of figures.
-  // `live` swaps in the peak rating from the CP API when it is reachable.
-  figures: [
-    { value: '8.97', unit: '/10', label: 'CGPA at IIT Kharagpur' },
-    { value: '1772', label: 'Peak Codeforces rating', note: 'Expert', live: 'codeforces' },
-    { value: '0.980', label: 'AUC on Indian clinical X-rays', note: 'Thesis' },
-    { value: '15→2', unit: 'days', label: 'Time-to-action cut at AmEx' }
-  ],
-
+  // About text, one entry per line. Supports **bold** and [links](https://...).
   about: [
-    'Hey! I’m Omkar — a final-year Computer Science student at IIT Kharagpur. Most of my time goes into **machine learning and deep learning**: reading papers, reproducing them, and figuring out why a model that looks great on a benchmark falls over on real data.',
-    'I’m equally at home lower in the stack. I’ve written a **Unix shell**, a **reliable transport protocol over UDP** and a **RISC processor on an FPGA**, and I keep my problem-solving sharp on Codeforces, CodeChef and AtCoder.',
-    'Away from the keyboard I write **poetry and prose**, and I’m an unapologetic tech geek who keeps up with every new gadget and launch.'
+    'Hey!',
+    'I am Omkar Bhandare, a fourth year CSE Dual Degree student at IIT Kharagpur.',
+    'I am passionate about machine learning and deep learning, and I am always keen to explore new advancements in these fields.',
+    'I also am fond of DSA and CP, and love solving problems on various competitive programming platforms.',
+    'Apart from academics, I enjoy writing poetry and prose in my free time. I do have an Instagram page where I share my work - don’t forget to [check it out!](https://www.instagram.com/deadpoets_page?igsh=MXFwMHVyamUwcm1wMQ==)',
+    'I am also a tech-geek, and I love keeping myself updated with the latest tech trends and gadgets.'
   ],
-
-  interests: ['Deep learning', 'Medical imaging', 'Agentic AI', 'Anomaly detection', 'Systems programming', 'Algorithms', 'Quantitative finance'],
 
   writing: {
     blurb:

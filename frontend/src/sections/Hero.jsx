@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import Icon from '../components/Icon'
 import RichText from '../components/RichText'
 import { profile, socials } from '../data/profile'
-import { rankTitle } from '../lib/ranks'
 import './Hero.css'
 
 const reduceMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
@@ -34,17 +33,8 @@ function RotatingRole({ words }) {
   )
 }
 
-// Figures marked `live` take the platform's peak rating (and rank) from the API.
-function resolveFigure(f, cp) {
-  if (!f.live) return f
-  const p = cp.platforms.find((x) => x.id === f.live)
-  if (!p?.maxRating) return f
-  return { ...f, value: String(p.maxRating), note: rankTitle(p.id, p.maxRating) ?? f.note }
-}
-
-export default function Hero({ cp }) {
+export default function Hero() {
   const primary = socials.filter((s) => s.id === 'github' || s.id === 'linkedin')
-  const figures = profile.figures.map((f) => resolveFigure(f, cp))
 
   return (
     <section id="top" className="hero">
@@ -93,21 +83,6 @@ export default function Hero({ cp }) {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="container">
-        <ul className="figures" aria-label="Highlights">
-          {figures.map((f, i) => (
-            <li key={f.label} className="figure reveal" style={{ '--delay': `${280 + i * 60}ms` }}>
-              <span className="figure__value">
-                {f.value}
-                {f.unit ? <span className="figure__unit">{f.unit}</span> : null}
-              </span>
-              <span className="figure__label">{f.label}</span>
-              {f.note ? <span className="figure__note mono">{f.note}</span> : null}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   )
