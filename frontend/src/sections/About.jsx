@@ -7,7 +7,7 @@ import './About.css'
 
 export default function About({ meta }) {
   return (
-    <Section id={meta.id} number={meta.number} title="About">
+    <Section id={meta.id} number={meta.number} title="About" wide>
       <div className="about">
         <figure className="about__photo reveal">
           <picture>

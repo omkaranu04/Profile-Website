@@ -1,4 +1,4 @@
-// Competitive programming handles and academic honours.
+// Competitive programming handles.
 // `fallback` values are shown when the live ratings API is unreachable.
 
 export const cpPlatforms = [
@@ -26,9 +26,3 @@ export const cpPlatforms = [
 ]
 
 export const cpRepo = { label: 'CP / DSA solutions', url: 'https://github.com/omkaranu04/CP_DSA' }
-
-export const honours = [
-  { value: 'AIR 1067', label: 'JEE Main 2022', note: 'Top 0.11%' },
-  { value: 'AIR 2057', label: 'JEE Advanced 2022', note: 'Top 1.3%' },
-  { value: 'AIR 9', label: 'MHT-CET 2022 · All India Merit', note: 'State Merit Rank 60, of 2 lakh+ candidates' }
-]

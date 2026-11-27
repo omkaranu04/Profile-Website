@@ -11,18 +11,18 @@ All text lives in `frontend/src/data/`. You should rarely need to touch a compon
 
 | File | What it controls |
 | --- | --- |
-| `profile.js` | Name, tagline, rotating roles, intro, About text, socials, writing blurb, résumé link |
+| `profile.js` | Name, rotating roles, About text, email, socials, résumé link |
 | `experience.js` | Internships / jobs (newest first) |
 | `projects.js` | Projects timeline (newest first) |
 | `competitions.js` | Hackathons & competitions timeline |
-| `achievements.js` | CP handles + fallback ratings, entrance-exam honours |
+| `achievements.js` | CP handles + fallback ratings |
 | `sections.js` | Section order, numbering, nav labels and legacy URL aliases |
 
 Text fields accept `**bold**` for emphasis.
 
 **Add a project:** add an object to `projects` in `projects.js` (keep newest first). Competitions work the same way in `competitions.js`.
 
-**Add a résumé button:** put the PDF in `frontend/public/` (e.g. `resume.pdf`) and set `resume: '/resume.pdf'` in `profile.js`. It then appears in the hero and the command menu.
+**Add a résumé button:** put the PDF in `frontend/public/` (e.g. `resume.pdf`) and set `resume: '/resume.pdf'` in `profile.js`. It then appears in the command menu.
 
 ## Features
 

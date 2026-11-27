@@ -7,6 +7,5 @@ export const sections = [
   { id: 'projects', label: 'Projects', number: '03', aliases: ['/projects'] },
   { id: 'competitions', label: 'Competitions', number: '04', aliases: ['/competitions', '/hackathons'] },
   { id: 'cp', label: 'CP', title: 'Competitive Programming', number: '05', aliases: ['/cp'] },
-  { id: 'writing', label: 'Writing', number: '06', aliases: ['/writing'] },
-  { id: 'contact', label: 'Contact', number: '07', aliases: ['/contact'] }
+  { id: 'contact', label: 'Contact', number: '06', aliases: ['/contact'] }
 ]

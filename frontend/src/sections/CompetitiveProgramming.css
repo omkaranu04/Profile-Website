@@ -79,25 +79,10 @@
 }
 .cp-card__nochart.is-loading { animation: blink 1.2s ease-in-out infinite; }
 
-.honours {
-  margin-top: 40px;
-  border-top: 1px solid var(--ink);
-  padding-top: 18px;
-}
-.honours__title { font-size: 11px; color: var(--accent); margin-bottom: 8px; }
-.honours__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.honour { display: flex; flex-direction: column; gap: 3px; padding: 14px 20px 6px 0; }
-.honour + .honour { padding-left: 20px; border-left: 1px solid var(--line); }
-.honour__value { font-family: var(--font-display); font-size: 40px; line-height: 1; letter-spacing: -0.01em; }
-.honour__label { font-weight: 600; font-size: 14.5px; margin-top: 6px; }
-.honour__note { color: var(--muted); font-size: 13.5px; }
-
 @media (max-width: 1020px) {
   .cp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 680px) {
   .cp-grid { grid-template-columns: 1fr; }
-  .honours__list { grid-template-columns: 1fr; }
-  .honour + .honour { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 8px; }
   .cp-status__repo { margin-left: 0; width: 100%; }
 }

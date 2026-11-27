@@ -8,7 +8,6 @@ import Experience from './sections/Experience'
 import Projects from './sections/Projects'
 import Competitions from './sections/Competitions'
 import CompetitiveProgramming from './sections/CompetitiveProgramming'
-import Writing from './sections/Writing'
 import Contact from './sections/Contact'
 import useTheme from './hooks/useTheme'
 import useReveal from './hooks/useReveal'
@@ -74,8 +73,7 @@ export default function App() {
         <Projects meta={meta.projects} />
         <Competitions meta={meta.competitions} />
         <CompetitiveProgramming meta={meta.cp} cp={cp} />
-        <Writing meta={meta.writing} />
-        <Contact meta={meta.contact} onToast={showToast} />
+        <Contact meta={meta.contact} />
       </main>
       <Footer onOpenPalette={openPalette} />
       <CommandPalette

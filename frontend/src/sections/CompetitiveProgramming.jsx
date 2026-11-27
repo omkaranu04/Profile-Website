@@ -2,7 +2,7 @@ import Section from '../components/Section'
 import Icon from '../components/Icon'
 import RatingChart from '../components/RatingChart'
 import { rankTitle } from '../lib/ranks'
-import { cpRepo, honours } from '../data/achievements'
+import { cpRepo } from '../data/achievements'
 import './CompetitiveProgramming.css'
 
 function PlatformCard({ p, loading }) {
@@ -69,19 +69,6 @@ export default function CompetitiveProgramming({ meta, cp }) {
 
       <div className="cp-grid">
         {platforms.map((p) => <PlatformCard key={p.id} p={p} loading={loading} />)}
-      </div>
-
-      <div className="honours reveal">
-        <h3 className="honours__title mono">Entrance examinations</h3>
-        <ul className="honours__list">
-          {honours.map((h) => (
-            <li key={h.label} className="honour">
-              <span className="honour__value">{h.value}</span>
-              <span className="honour__label">{h.label}</span>
-              <span className="honour__note">{h.note}</span>
-            </li>
-          ))}
-        </ul>
       </div>
     </Section>
   )
