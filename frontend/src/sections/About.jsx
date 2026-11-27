@@ -12,7 +12,7 @@ export default function About({ meta }) {
         <figure className="about__photo reveal">
           <picture>
             <source srcSet={portraitWebp} type="image/webp" />
-            <img src={portraitJpg} alt={`${profile.name}, sitting on a rock in a mountain stream`} width="720" height="900" loading="lazy" decoding="async" />
+            <img src={portraitJpg} alt={`${profile.name} in a suit, taking a mirror photo with a camera`} width="720" height="900" loading="lazy" decoding="async" />
           </picture>
         </figure>
 
