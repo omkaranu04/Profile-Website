@@ -14,7 +14,6 @@ export default function About({ meta }) {
             <source srcSet={portraitWebp} type="image/webp" />
             <img src={portraitJpg} alt={`${profile.name}, sitting on a rock in a mountain stream`} width="720" height="900" loading="lazy" decoding="async" />
           </picture>
-          <figcaption className="mono">Somewhere in the hills · off the clock</figcaption>
         </figure>
 
         <div className="about__text">

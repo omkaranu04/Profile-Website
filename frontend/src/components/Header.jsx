@@ -6,9 +6,8 @@ import useScrollSpy from '../hooks/useScrollSpy'
 import './Header.css'
 
 const ids = sections.map((s) => s.id)
-const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)
 
-export default function Header({ theme, onToggleTheme, onOpenPalette }) {
+export default function Header({ theme, onToggleTheme }) {
   const active = useScrollSpy(ids)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -60,11 +59,6 @@ export default function Header({ theme, onToggleTheme, onOpenPalette }) {
         </nav>
 
         <div className="header__actions">
-          <button type="button" className="kbar-btn" onClick={onOpenPalette} aria-label="Open command menu">
-            <Icon name="search" size={15} />
-            <span className="kbar-btn__text">Search</span>
-            <kbd>{isMac ? '⌘' : 'Ctrl'} K</kbd>
-          </button>
           <button
             type="button"
             className="icon-btn"

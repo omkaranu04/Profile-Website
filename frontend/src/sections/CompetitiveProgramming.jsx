@@ -54,15 +54,10 @@ export default function CompetitiveProgramming({ meta, cp }) {
     <Section
       id={meta.id}
       number={meta.number}
-      title="Competitive programming"
-      kicker="Contests keep my fundamentals honest. Ratings below are pulled live from each platform."
+      title="Competitive Programming"
       wide
     >
-      <div className="cp-status mono" role="status">
-        <span className={`cp-status__dot is-${status}`} aria-hidden />
-        {status === 'live' && 'Live from Codeforces, CodeChef & AtCoder'}
-        {status === 'loading' && 'Fetching live ratings…'}
-        {status === 'offline' && 'Live ratings unavailable — showing peak ratings'}
+      <div className="cp-status mono">
         <a href={cpRepo.url} target="_blank" rel="noopener noreferrer" className="cp-status__repo">
           <Icon name="github" size={14} /> {cpRepo.label} <Icon name="arrowUpRight" size={12} />
         </a>

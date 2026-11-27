@@ -7,9 +7,6 @@ export const profile = {
   initials: 'OB',
   location: 'Kharagpur, India',
   email: 'omkaranu04@gmail.com',
-  // Drop a PDF in frontend/public/ (e.g. resume.pdf) and set this to '/resume.pdf'
-  // to add an "Open résumé" entry to the command palette.
-  resume: null,
 
   // Rotating phrase in the hero ("I’m ___")
   roles: ['a coder', 'an ML/DL enthusiast', 'a poet', 'a writer', 'a learner for life'],

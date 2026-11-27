@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import Header from './components/Header'
-import CommandPalette from './components/CommandPalette'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Experience from './sections/Experience'
@@ -30,41 +29,15 @@ function useLegacyPathRedirect() {
 
 export default function App() {
   const { theme, toggle } = useTheme()
-  const [paletteOpen, setPaletteOpen] = useState(false)
-  const [toast, setToast] = useState(null)
   const cp = useCpStats()
 
   useReveal('app')
   useLegacyPathRedirect()
 
-  const toastTimer = useRef(0)
-  const showToast = useCallback((msg) => {
-    setToast(msg)
-    clearTimeout(toastTimer.current)
-    toastTimer.current = setTimeout(() => setToast(null), 2200)
-  }, [])
-
-  useEffect(() => {
-    const onKey = (e) => {
-      const typing = /input|textarea|select/i.test(e.target.tagName) || e.target.isContentEditable
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault()
-        setPaletteOpen((o) => !o)
-      } else if (e.key === '/' && !typing && !paletteOpen) {
-        e.preventDefault()
-        setPaletteOpen(true)
-      }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [paletteOpen])
-
-  const openPalette = useCallback(() => setPaletteOpen(true), [])
-
   return (
     <>
       <a className="skip-link" href="#about">Skip to content</a>
-      <Header theme={theme} onToggleTheme={toggle} onOpenPalette={openPalette} />
+      <Header theme={theme} onToggleTheme={toggle} />
       <main>
         <Hero />
         <About meta={meta.about} />
@@ -74,14 +47,6 @@ export default function App() {
         <CompetitiveProgramming meta={meta.cp} cp={cp} />
         <Contact meta={meta.contact} />
       </main>
-      <CommandPalette
-        open={paletteOpen}
-        onClose={() => setPaletteOpen(false)}
-        theme={theme}
-        onToggleTheme={toggle}
-        onToast={showToast}
-      />
-      {toast ? <div className="toast" role="status">{toast}</div> : null}
     </>
   )
 }

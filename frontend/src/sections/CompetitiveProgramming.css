@@ -7,9 +7,6 @@
   font-size: 11px;
   color: var(--muted);
 }
-.cp-status__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); }
-.cp-status__dot.is-live { background: #2f9e5b; box-shadow: 0 0 0 3px rgba(47, 158, 91, .18); }
-.cp-status__dot.is-loading { animation: blink 1s ease-in-out infinite; }
 @keyframes blink { 50% { opacity: .3; } }
 .cp-status__repo {
   margin-left: auto;
@@ -84,5 +81,4 @@
 }
 @media (max-width: 680px) {
   .cp-grid { grid-template-columns: 1fr; }
-  .cp-status__repo { margin-left: 0; width: 100%; }
 }
