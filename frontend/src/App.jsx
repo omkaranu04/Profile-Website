@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Header from './components/Header'
-import Footer from './components/Footer'
 import CommandPalette from './components/CommandPalette'
 import Hero from './sections/Hero'
 import About from './sections/About'
@@ -75,7 +74,6 @@ export default function App() {
         <CompetitiveProgramming meta={meta.cp} cp={cp} />
         <Contact meta={meta.contact} />
       </main>
-      <Footer onOpenPalette={openPalette} />
       <CommandPalette
         open={paletteOpen}
         onClose={() => setPaletteOpen(false)}

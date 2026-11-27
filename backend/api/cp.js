@@ -26,6 +26,8 @@ let cache = {
   data: null
 }
 
+const titleCase = (s) => (s ? String(s).replace(/\b\w/g, (c) => c.toUpperCase()) : null)
+
 const http = axios.create({
   timeout: 8000,
   headers: { 'User-Agent': 'Mozilla/5.0' }
@@ -54,6 +56,8 @@ async function getCodeforces() {
     handle: u.handle,
     rating: u.rating ?? null,
     maxRating: u.maxRating ?? null,
+    rank: titleCase(u.rank),
+    maxRank: titleCase(u.maxRank),
     history: contests.map((c) => ({
       t: c.ratingUpdateTimeSeconds,
       rating: c.newRating,
@@ -78,6 +82,9 @@ async function getCodeChef() {
 
   const highestMatch = highestText.match(/(\d+)/)
 
+  // Star rating as shown on the profile, e.g. four ★ spans -> "4★"
+  const stars = $('.rating-star').first().find('span').length
+
   // The rating graph is embedded as `var all_rating = [...];`
   let history = []
   const graph = data.match(/all_rating\s*=\s*(\[[\s\S]*?\]);/)
@@ -100,15 +107,33 @@ async function getCodeChef() {
     handle: CC_HANDLE,
     rating: ratingText ? Number(ratingText) : null,
     maxRating: highestMatch ? Number(highestMatch[1]) : null,
+    rank: stars ? `${stars}★` : null,
     history
   }
 }
 
 /* =====================
-   ATCODER (JSON API)
+   ATCODER (JSON API + profile page for the Kyu/Dan title)
    ===================== */
+async function getAtCoderRanks() {
+  const { data } = await http.get(`https://atcoder.jp/users/${AC_HANDLE}?lang=en`)
+  const $ = cheerio.load(data)
+  // Current title sits above the username, e.g. <h3><b>1 Dan</b>...
+  const rank = $('h3 > b').first().text().trim() || null
+  // Highest title follows the highest rating in the profile table
+  const highestRow = $('table.dl-table tr')
+    .filter((_, el) => $(el).find('th').text().trim() === 'Highest Rating')
+    .first()
+  const maxRank = highestRow.find('span.bold').first().text().trim() || null
+  const valid = (t) => (t && /^\d+\s+(Kyu|Dan)$/i.test(t) ? t : null)
+  return { rank: valid(rank), maxRank: valid(maxRank) }
+}
+
 async function getAtCoder() {
-  const { data } = await http.get(`https://atcoder.jp/users/${AC_HANDLE}/history/json`)
+  const [{ data }, ranks] = await Promise.all([
+    http.get(`https://atcoder.jp/users/${AC_HANDLE}/history/json`),
+    getAtCoderRanks().catch(() => ({ rank: null, maxRank: null }))
+  ])
 
   const rated = Array.isArray(data) ? data.filter((e) => e.IsRated && e.NewRating != null) : []
 
@@ -127,6 +152,8 @@ async function getAtCoder() {
     handle: AC_HANDLE,
     rating: rated[rated.length - 1].NewRating,
     maxRating: Math.max(...rated.map((e) => e.NewRating)),
+    rank: ranks.rank,
+    maxRank: ranks.maxRank,
     history: rated.map((e) => ({
       t: Math.floor(Date.parse(e.EndTime) / 1000),
       rating: e.NewRating,

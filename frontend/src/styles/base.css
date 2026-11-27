@@ -141,6 +141,23 @@ kbd {
   color: var(--muted);
 }
 
+/* Toast (copy confirmations etc.) */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 90;
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 14px;
+  box-shadow: var(--shadow);
+  animation: toast-in .25s var(--ease);
+}
+@keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } }
+
 /* Scroll-triggered reveal */
 .reveal {
   opacity: 0;

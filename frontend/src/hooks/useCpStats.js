@@ -35,6 +35,8 @@ export default function useCpStats() {
               ...p,
               rating: d.rating ?? null,
               maxRating: Math.max(d.maxRating ?? 0, p.fallback.maxRating ?? 0) || null,
+              rank: d.rank ?? null,
+              maxRank: d.maxRank ?? null,
               history: Array.isArray(d.history) ? d.history : [],
               live: true
             }

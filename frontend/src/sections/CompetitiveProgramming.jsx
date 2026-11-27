@@ -6,7 +6,8 @@ import { cpRepo } from '../data/achievements'
 import './CompetitiveProgramming.css'
 
 function PlatformCard({ p, loading }) {
-  const peakTitle = rankTitle(p.id, p.maxRating)
+  // Title as scraped from the platform; computed from the rating only as a fallback
+  const title = p.rank ?? rankTitle(p.id, p.rating ?? p.maxRating)
   const showChart = p.history && p.history.length > 1
 
   return (
@@ -18,7 +19,7 @@ function PlatformCard({ p, loading }) {
             @{p.handle} <Icon name="arrowUpRight" size={12} />
           </a>
         </div>
-        {peakTitle ? <span className="cp-card__rank">{peakTitle}</span> : null}
+        {title ? <span className="cp-card__rank">{title}</span> : null}
       </header>
 
       <dl className="cp-card__stats">

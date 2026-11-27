@@ -12,7 +12,7 @@
 .hero__title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: min(calc((100vw - 2 * var(--gutter)) / 6.3), 172px);
+  font-size: min(calc((100vw - 2 * var(--gutter)) / 6.3), 200px);
   line-height: .95;
   letter-spacing: -0.025em;
   white-space: nowrap;
