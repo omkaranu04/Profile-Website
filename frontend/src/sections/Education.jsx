@@ -8,8 +8,7 @@ export default function Education({ meta }) {
     date: e.date,
     place: e.location,
     title: e.school,
-    subtitle: e.degree,
-    badge: e.score
+    subtitle: e.degree
   }))
 
   return (
