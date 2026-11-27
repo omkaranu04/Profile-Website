@@ -6,6 +6,7 @@ export const competitions = [
     title: 'Alfa Connectome ML Competition',
     context: 'Wunder Fund · Online',
     date: 'Aug – Nov 2026',
+    github: 'https://github.com/omkaranu04/wundernn_hackathon_2026',
     points: [
       'Built a **causal LSTM/GRU ensemble** distilled from **look-ahead teachers** to forecast price signals from **112 streaming features**.',
       'Wrote a **numba int8/int16 inference engine** replacing ONNX Runtime, cutting per-row latency from **~130 µs to <60 µs** on 1 vCPU.'
