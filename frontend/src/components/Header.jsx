@@ -37,7 +37,6 @@ export default function Header({ theme, onToggleTheme }) {
       <div className="container header__inner">
         <a href="#top" className="brand" aria-label={`${profile.name} — back to top`}>
           <span className="brand__mark">{profile.initials}</span>
-          <span className="brand__name">{profile.name}</span>
         </a>
 
         <nav className="nav" aria-label="Sections">

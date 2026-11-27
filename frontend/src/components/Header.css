@@ -89,14 +89,9 @@
 
 .menu-btn { display: none; }
 
-@media (max-width: 1060px) {
-  .brand__name { display: none; }
-}
-
 @media (max-width: 1000px) {
   .menu-btn { display: grid; }
   .header__actions { margin-left: auto; }
-  .brand__name { display: inline; }
 
   .nav {
     position: fixed;
