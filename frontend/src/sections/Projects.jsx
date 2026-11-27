@@ -35,7 +35,7 @@ export default function Projects({ meta }) {
       {hidden > 0 ? (
         <div className="tl-more">
           <button type="button" className="btn" onClick={toggle} aria-expanded={expanded}>
-            {expanded ? 'Show fewer' : `Show all ${projects.length} projects`}
+            {expanded ? 'Show Fewer Projects' : 'View All Projects'}
             <Icon name="arrowDown" className={expanded ? 'tl-more__icon is-up' : 'tl-more__icon'} />
           </button>
         </div>

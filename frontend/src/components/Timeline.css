@@ -63,13 +63,13 @@
   gap: 24px;
   margin-top: 20px;
 }
-.tl-more .btn { grid-column: 2; justify-self: start; }
+.tl-more .btn { grid-column: 2; justify-self: center; }
 .tl-more__icon { transition: transform .25s var(--ease); }
 .tl-more__icon.is-up { transform: rotate(180deg); }
 
 @media (max-width: 700px) {
   .tl-more { grid-template-columns: 1fr; }
-  .tl-more .btn { grid-column: 1; }
+  .tl-more .btn { grid-column: 1; justify-self: center; }
   .tl__item { grid-template-columns: 1fr; gap: 10px; }
   .tl__meta { padding-top: 0; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
   .tl__card { padding: 20px; }
