@@ -7,6 +7,17 @@
 
 export const projects = [
   {
+    id: 'mtp',
+    title: 'Syntax & Morphology in Transformer Encoders',
+    context: 'Master’s Thesis · Prof. J. Mukhopadhyay',
+    date: 'Jul 2026 – Present',
+    points: [
+      'Probed syntax in **17 encoders** with **Euclidean & hyperbolic structural probes**, achieving **UUAS 0.69–0.83** vs. 0.24–0.50 untrained.',
+      'Showed the number of **nonce** plurals is composed from the subword **‘-s’**, with encoders choosing plural verbs in **73–85%** of cases.',
+      'Used **LEACE** and **activation patching** to show suffix class uses **3 of 768 dims** (27–56%) and agreement uses **1 direction** (79–96%).'
+    ]
+  },
+  {
     id: 'btp',
     title: 'Thoracic Disease Detection & Report Synthesis',
     context: 'Bachelor’s Thesis · Prof. J. Mukhopadhyay',

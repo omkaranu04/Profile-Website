@@ -14,7 +14,7 @@ export function rankTitle(platform, rating) {
     return `${stars}★`
   }
   if (platform === 'atcoder') {
-    if (rating >= 2000) return 'Dan'
+    if (rating >= 2000) return `${Math.min(10, 1 + Math.floor((rating - 2000) / 200))} Dan`
     return `${Math.min(10, 1 + Math.floor((1999 - rating) / 200))} Kyu`
   }
   return null

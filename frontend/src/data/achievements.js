@@ -7,7 +7,7 @@ export const cpPlatforms = [
     name: 'Codeforces',
     handle: 'omaksh_fr',
     url: 'https://codeforces.com/profile/omaksh_fr',
-    fallback: { rating: null, maxRating: 1772 }
+    fallback: { rating: null, maxRating: 1780 }
   },
   {
     id: 'codechef',
@@ -21,7 +21,7 @@ export const cpPlatforms = [
     name: 'AtCoder',
     handle: 'omkarvb13',
     url: 'https://atcoder.jp/users/omkarvb13',
-    fallback: { rating: null, maxRating: 1919 }
+    fallback: { rating: null, maxRating: 2050 }
   }
 ]
 

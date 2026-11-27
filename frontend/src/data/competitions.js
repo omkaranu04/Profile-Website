@@ -2,6 +2,16 @@
 
 export const competitions = [
   {
+    id: 'wunderfund',
+    title: 'Alfa Connectome ML Competition',
+    context: 'Wunder Fund · Online',
+    date: 'Aug – Nov 2026',
+    points: [
+      'Built a **causal LSTM/GRU ensemble** distilled from **look-ahead teachers** to forecast price signals from **112 streaming features**.',
+      'Wrote a **numba int8/int16 inference engine** replacing ONNX Runtime, cutting per-row latency from **~130 µs to <60 µs** on 1 vCPU.'
+    ]
+  },
+  {
     id: 'innov8',
     title: 'AI-powered HR Decision Making',
     context: 'Innov8 2.0 Finals · Eightfold AI · In-person',
