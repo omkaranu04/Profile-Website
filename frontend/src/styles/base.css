@@ -20,17 +20,20 @@ body {
   transition: background-color .3s var(--ease), color .3s var(--ease);
 }
 
-/* Faint paper grain — purely decorative */
+/* Faint engineering grid behind the top of the page — purely decorative */
 body::before {
   content: '';
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 100svh;
   pointer-events: none;
   z-index: 0;
-  opacity: .35;
-  background-image: radial-gradient(var(--line) 0.6px, transparent 0.6px);
-  background-size: 22px 22px;
-  mask-image: linear-gradient(to bottom, #000 0, transparent 520px);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 40%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 70% at 30% 40%, #000 30%, transparent 75%);
 }
 
 #root { position: relative; z-index: 1; }

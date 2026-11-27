@@ -24,7 +24,7 @@ Text fields accept `**bold**` for emphasis.
 
 ## Features
 
-- Light (“paper”) and dark (“ink”) themes — follows the OS, remembers a manual choice
+- Light and dark themes (slate + cobalt) — follows the OS, remembers a manual choice
 - Live CP ratings with interactive rating-history charts; falls back to stored peak ratings if the API is unreachable
 - Scroll-spy navigation, reading-progress bar, reveal-on-scroll (disabled under `prefers-reduced-motion`)
 - Old URLs (`/about`, `/experience`, `/projects`, `/hackathons`, `/cp`) land on the matching section (`/hackathons` → Competitions)

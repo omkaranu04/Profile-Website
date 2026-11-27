@@ -26,7 +26,7 @@
 
 .tl__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
 .tl__title { font-size: 20px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.3; }
-.tl__at { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--muted); font-size: 1.1em; }
+.tl__at { font-weight: 400; color: var(--muted); }
 .tl__subtitle { margin-top: 4px; font-size: 14px; color: var(--muted); }
 
 .tl__link {
