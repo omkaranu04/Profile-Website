@@ -12,6 +12,7 @@ All text lives in `frontend/src/data/`. You should rarely need to touch a compon
 | File | What it controls |
 | --- | --- |
 | `profile.js` | Name, rotating roles, About text, email, socials |
+| `education.js` | Education (newest first) |
 | `experience.js` | Internships / jobs (newest first) |
 | `projects.js` | Projects timeline (newest first) |
 | `competitions.js` | Hackathons & competitions timeline |

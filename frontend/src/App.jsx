@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Header from './components/Header'
 import Hero from './sections/Hero'
 import About from './sections/About'
+import Education from './sections/Education'
 import Experience from './sections/Experience'
 import Projects from './sections/Projects'
 import Competitions from './sections/Competitions'
@@ -41,6 +42,7 @@ export default function App() {
       <main>
         <Hero />
         <About meta={meta.about} />
+        <Education meta={meta.education} />
         <Experience meta={meta.experience} />
         <Projects meta={meta.projects} />
         <Competitions meta={meta.competitions} />

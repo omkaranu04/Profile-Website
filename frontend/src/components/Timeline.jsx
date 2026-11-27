@@ -6,7 +6,7 @@ import './Timeline.css'
 // dates (and optional place) on the left, a card with title, subtitle,
 // optional link and bullet points on the right.
 //
-// entry: { id, date, place?, title, subtitle?, link?: { label, url }, points }
+// entry: { id, date, place?, title, subtitle?, badge?, link?: { label, url }, points? }
 export default function Timeline({ entries }) {
   return (
     <ol className="tl">
@@ -20,6 +20,7 @@ export default function Timeline({ entries }) {
           <article className="tl__card">
             <header className="tl__head">
               <h3 className="tl__title">{e.title}</h3>
+              {e.badge ? <span className="tl__badge">{e.badge}</span> : null}
               {e.link ? (
                 <a href={e.link.url} target="_blank" rel="noopener noreferrer" className="tl__link mono">
                   {e.link.label} <Icon name="arrowUpRight" size={13} />
@@ -27,9 +28,11 @@ export default function Timeline({ entries }) {
               ) : null}
             </header>
             {e.subtitle ? <p className="tl__subtitle">{e.subtitle}</p> : null}
-            <ul className="tl__points">
-              {e.points.map((p, j) => <li key={j}><RichText text={p} /></li>)}
-            </ul>
+            {e.points?.length ? (
+              <ul className="tl__points">
+                {e.points.map((p, j) => <li key={j}><RichText text={p} /></li>)}
+              </ul>
+            ) : null}
           </article>
         </li>
       ))}

@@ -3,9 +3,10 @@
 
 export const sections = [
   { id: 'about', label: 'About', number: '01', aliases: ['/about'] },
-  { id: 'experience', label: 'Experience', number: '02', aliases: ['/experience'] },
-  { id: 'projects', label: 'Projects', number: '03', aliases: ['/projects'] },
-  { id: 'competitions', label: 'Competitions', number: '04', aliases: ['/competitions', '/hackathons'] },
-  { id: 'cp', label: 'CP', number: '05', aliases: ['/cp'] },
-  { id: 'contact', label: 'Contact', number: '06', aliases: ['/contact'] }
+  { id: 'education', label: 'Education', number: '02', aliases: ['/education'] },
+  { id: 'experience', label: 'Experience', number: '03', aliases: ['/experience'] },
+  { id: 'projects', label: 'Projects', number: '04', aliases: ['/projects'] },
+  { id: 'competitions', label: 'Competitions', number: '05', aliases: ['/competitions', '/hackathons'] },
+  { id: 'cp', label: 'CP', number: '06', aliases: ['/cp'] },
+  { id: 'contact', label: 'Contact', number: '07', aliases: ['/contact'] }
 ]
